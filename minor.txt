@@ -1,0 +1,11 @@
+potential topics :
+	1)election in gujarat
+	2)characters of leaders
+	3)prediction of success of movies
+	4)data mining of political inclination on social media platform
+	
+
+1)we have compared four methods from machine learning and deep learning domains named as ”textblob”, ”naive bayes method”,
+ ”support vector machine” and ”BERT based deep learning approach” for sentiment analysis. 
+2)Sentiment analysis is basically the practice of describing the emotional tone of a set of terms used in an online mention
+ to obtain an understanding of the thoughts, feelings, and attitudes conveyed

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  </head>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e6e8ed;
+  color: #666666;
+  font-family: "Montserrat", sans-serif;
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
+  line-height: 1px;
+}
+
+.material-symbols-outlined {
+  vertical-align: middle;
+  line-height: 1px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    "sidebar header "
+    "sidebar main ";
+  height: 100vh;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.header {
+  grid-area: header;
+  height: 70px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px 0 30px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-icon {
+  display: none;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+#sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  background-color: #21232d;
+  color: #cdcfdb;
+  overflow-y: auto;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 30px;
+}
+
+.sidebar-title > span {
+  display: none;
+}
+
+.sidebar-brand {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-list {
+  padding: 0;
+  margin-top: 15px;
+  list-style-type: none;
+}
+
+.sidebar-list-item {
+  padding: 20px 20px 20px 20px;
+}
+
+.sidebar-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+form {
+  /* border: 2px solid red; */
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+  width: 70vw;
+}
+
+.form_div {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* border: 2px solid blue;  */
+  /* background-color: #246dec; */
+  padding: 20px;
+  /* margin-bottom: 30px;
+  margin-left:150px; */
+}
+
+.form_div label {
+  margin-bottom: 10px;
+}
+
+.form_div textarea {
+  width: 70%;
+  margin-bottom: 40px;
+  border-radius: 15px;
+  border:1px solid blue;
+  
+}
+
+.form_div button {
+  width: 25%;
+  border: none;
+  border-radius: 20px;
+  color:#e6e8ed;
+  background-color: #022d77;
+}
+.abc{
+  /* margin-right: 0px; */
+  /* border:2px solid red;  */
+  border-radius: 40px;
+
+}
+.abcd{
+  justify-content: center;
+  align-items: center;
+  /* border:2px solid blue; */
+  /* margin-top: 200px; */
+} 
+
+.result {
+  padding-top:2vh ;
+  padding-bottom: 2vh;
+ margin-top: 80px;
+  /* border: 2px solid purple; */
+  height: 10vh;
+  border-radius: 20px;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+
+  
+}
+
+.hide {
+  display: none;
+}
+
+
+.sidebar-responsive {
+  display: inline !important;
+  position: absolute;
+  /*
+    the z-index of the ApexCharts is 11
+    we want the z-index of the sidebar higher so that
+    the charts are not showing over the sidebar 
+    on small screens
+  */
+  z-index: 12 !important;
+}
+
+
+/* ---------- MAIN ---------- */
+
+
+/* ---------- SCROLLBARS ---------- */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #a5aaad;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4f35a1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a5aaad;
+}
+
+
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+
+  .sidebar-title > span {
+    display: inline;
+  }
+}
+
+/* Small <= 768px */
+@media screen and (max-width: 768px) {
+  .main-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .charts {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+}
+
+/* Extra Small <= 576px */
+@media screen and (max-width: 576px) {
+  .header-left {
+    display: none;
+  }
+}
+  </style>
+  <body>
+    <div class="grid-container abc">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        
+        <div class="header-right">
+         
+          
+          <p><strong>Model</strong></p>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Menu
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">dashboard</span><a href="/index"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Dashboard</a> 
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">inventory_2</span> <a href="/parties"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Candidates</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-symbols-outlined">event_note</span> <a href="/info"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Information</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">fact_check</span><a href="/model"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Model</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">insert_chart</span> <a href="/analysis"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Analysis</a>
+          </li>
+          
+        </ul>
+      </aside>
+      <div class="abcd">
+      <form id="input_form" name="input_form">
+        <div class="form_div abc">
+          <center>
+          <p style="font-style:normal;" for="tweet"><strong>LETS TWEET</strong> </p>
+          <textarea name="tweet" id="tweet_input" ></textarea><br>
+          <button type="submit">POST</button>
+          </center>
+        </div>
+        <div class="result hide" id= "here">
+            
+        </div>
+      </form>
+</div>
+    </div>
+
+    
+    
+    
+  </body>
+  <script>
+
+const result = document.querySelector('.result');
+const fom = document.querySelector('form');
+fom.addEventListener('submit', (e) => {
+    e.preventDefault();
+    //console.log('Form submitted')
+    result.classList.remove('hide');
+})
+
+const form = document.getElementById('input_form');
+console.log(form)
+const tweet = form.elements['tweet_input'];
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const text = tweet.value;
+    console.log(text)
+    const formData = {
+        text,
+    };
+    let ABC = {
+        method: 'POST',
+        headers: {
+            'Content-Type':
+                'application/json'
+        },
+        body: JSON.stringify(formData)
+    }
+    let response = await fetch('/get_prediction',ABC)
+    console.log(response)
+    const a = await response.json()
+    if(a?.note == 'No results found'){
+        alert("No records found.")
+        return null;
+    }
+	const dataset = a
+  console.log(dataset)
+document.getElementById("here").innerHTML= dataset
+document.getElementById("here").style.color="white"
+document.getElementById("here").style.backgroundColor="blue"
+
+  //document.write(dataset)
+})
+
+    
+
+var sidebarOpen = false;
+var sidebar = document.getElementById("sidebar");
+
+function openSidebar() {
+  if(!sidebarOpen) {
+    sidebar.classList.add("sidebar-responsive");
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if(sidebarOpen) {
+    sidebar.classList.remove("sidebar-responsive");
+    sidebarOpen = false;
+  }
+}
+  </script>
+</html>

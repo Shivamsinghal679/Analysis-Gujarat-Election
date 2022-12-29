@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  </head>
+  <style>
+    
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+    body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e6e8ed;
+  color: #666666;
+  font-family: "Montserrat", sans-serif;
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
+  line-height: 1px;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 260px 1fr ;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    "sidebar header "
+    "sidebar main";
+  height: 100vh;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.header {
+  grid-area: header;
+  height: 70px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-icon {
+  display: none;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+#sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  background-color: #21232d;
+  color: #9799ab;
+  overflow-y: auto;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 30px;
+}
+
+.sidebar-title > span {
+  display: none;
+}
+
+.sidebar-brand {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-list {
+  padding: 0;
+  margin-top: 15px;
+  list-style-type: none;
+}
+
+.sidebar-list-item {
+  padding: 20px 20px 20px 20px;
+}
+
+.sidebar-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+.container{
+  /* border: 2px solid red; */
+  
+  margin:auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.sidebar-responsive {
+  display: inline !important;
+  position: absolute;
+ 
+  z-index: 12 !important;
+}
+
+
+
+
+
+/* Medium <= 992px */
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+
+  .sidebar-title > span {
+    display: inline;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .header-left {
+    display: none;
+  }
+}
+  </style>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        
+        <div class="header-right">
+         
+          
+          <p><strong>CANDIDATES</strong></p>
+        </div>
+      </header>
+      
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Menu
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">dashboard</span><a href="/index"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Dashboard</a> 
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">inventory_2</span> <a href="/parties"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Candidates</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">fact_check</span> <a href="/info"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Information</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">fact_check</span><a href="/model"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Model</a>
+            <li class="sidebar-list-item">
+              <span class="material-icons-outlined">insert_chart</span> <a href="/analysis"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Analysis</a>
+            </li>
+          </li>
+          
+        </ul>
+      </aside>
+      <div class="container">
+        <h2>Select to see the list of candidates</h2>                                     
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Districts
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a class="test" tabindex="-1" href="#">Kachchh<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Abdasa <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vasant Valjibhai Khetani (AAP)</a></li>
+                    <li><a href="#">P. M. Jadeja (BJP)</a></li>
+                    <li><a href="#">Mamadbhai Jung Jat (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Mandvi (Kachchh) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Kailash Gadhvi (AAP)</a></li>
+                    <li><a href="#">Aniruddh Dave (BJP)</a></li>
+                    <li><a href="#">Rajendersingh Jadeja (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Rapar <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ambabhai Patel (AAP)</a></li>
+                    <li><a href="#">Virendrasinh Jadeja (BJP)</a></li>
+                    <li><a href="#">Bacchu Arethiya (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Bhuj <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Rajesh Pandoriya (AAP)</a></li>
+                    <li><a href="#">Keshubhai Patel (BJP)</a></li>
+                    <li><a href="#">Arjanbhai Bhudia (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Anjar <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Arjan Rabari (AAP)</a></li>
+                    <li><a href="#">Trikambhai Chhanga (BJP)</a></li>
+                    <li><a href="#">Ramesh Dangar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Gandhidham (SC) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">B. T. Maheshwari (AAP)</a></li>
+                    <li><a href="#">Malti Maheshwari (BJP)</a></li>
+                    <li><a href="#">Bharat Solanki (INC)</a></li>
+                  </ul>
+               </li>
+              </ul>
+              <a class="test" tabindex="-1" href="#">Banaskantha<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Vav<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bhim Patel (AAP)</a></li>
+                    <li><a href="#">Swarupji Thakor (BJP)</a></li>
+                    <li><a href="#">Geniben Thakor (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Tharad <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Virchandbhai Chavda (AAP)</a></li>
+                    <li><a href="#">Shankar Chaudhary (BJP)</a></li>
+                    <li><a href="#">Gulabsinh Pirabhai Rajput (INC)</a></li>
+                  </ul>
+                        <a class="test" href="#">Dhanera <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Suresh Devda(AAP)</a></li>
+                    <li><a href="#">Bhagwanji Chaudhary (BJP)</a></li>
+                    <li><a href="#">Nathabhai Hegolabhai Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Tharad <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Virchandbhai Chavda (AAP)</a></li>
+                    <li><a href="#">Shankar Chaudhary (BJP)</a></li>
+                    <li><a href="#">Gulabsinh Pirabhai Rajput (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Danta (ST) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">M. K. Bombadiya (AAP)</a></li>
+                    <li><a href="#">Ladhubhai Paraghi (BJP)</a></li>
+                    <li><a href="#">Kantibhai Kalabhai Kharadi (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Vadgam (SC) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Dalpat Bhatiya (AAP)</a></li>
+                    <li><a href="#">Manilal Vaghela (BJP)</a></li>
+                    <li><a href="#">Jignesh Mevani (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                     <a class="test" tabindex="-1" href="#">Patan<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Radhanpur<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Lalji Thakor (AAP)</a></li>
+                    <li><a href="#">Lavingji Thakor (BJP)</a></li>
+                    <li><a href="#">Raghubhai Merajbhai Desai (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Chanasma <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vishnubhai Patel (AAP)</a></li>
+                    <li><a href="#">Dilipkumar Thakor (BJP)</a></li>
+                    <li><a href="#">Dineshbhai Ataji Thakor (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Patan <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Lalesh Thakkar (AAP)</a></li>
+                    <li><a href="#">Rajulben Desai (BJP)</a></li>
+                    <li><a href="#">Dr Kiritkumar Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Sidhpur <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Mahendra Rajput (AAP)</a></li>
+                    <li><a href="#">Balvantsinh Rajput (BJP)</a></li>
+                    <li><a href="#">Chandanji Thakor (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                   <a class="test" tabindex="-1" href="#">Mahesana<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Kheralu<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Dinesh Thakor (AAP)</a></li>
+                    <li><a href="#">Sardarsinh Chaudhary (BJP)</a></li>
+                    <li><a href="#">Mukeshbhai M. Desai (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Unjha <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Urvish Patel (AAP)</a></li>
+                    <li><a href="#">Kirit Patel (BJP)</a></li>
+                    <li><a href="#">Patel Arvind Amratlal (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Visnagar <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jayanti Patel (AAP)</a></li>
+                    <li><a href="#">Rushikesh Patel (BJP)</a></li>
+                    <li><a href="#">Kiritibhai Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Bechraji<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sagar Rabari (AAP)</a></li>
+                    <li><a href="#">Sukhaji Thakor (BJP)</a></li>
+                    <li><a href="#">Bhopaji Thakor (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Mahesana<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bhagat Patel (AAP)</a></li>
+                    <li><a href="#">Mukesh Patel (BJP)</a></li>
+                    <li><a href="#">P K Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Vijapur<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Chiragbhai Patel (AAP)</a></li>
+                    <li><a href="#">Ramanbhai Patel (BJP)</a></li>
+                    <li><a href="#">Dr. C. J. Chavda (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                   <a class="test" tabindex="-1" href="#">Sabarkantha<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Himatnagar<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Nirmalsinh Parmar (AAP)</a></li>
+                    <li><a href="#">V.D.Jhala (BJP)</a></li>
+                    <li><a href="#">Kamleshkumar Jayantibhai Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Idar (SC) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jayantbhai Parnami (AAP)</a></li>
+                    <li><a href="#">Ramanlal Vora (BJP)</a></li>
+                    <li><a href="#">Ramabhai Virchandbhai Solanki (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Khedbrahma (ST) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bipin Gameti (AAP)</a></li>
+                    <li><a href="#">Ashvin Kotwal (BJP)</a></li>
+                    <li><a href="#">Tushar Amarsinh Chaudhary (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                    <a class="test" tabindex="-1" href="#">Aravalli<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Bhiloda (ST)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Rupsinh Bhagoda (AAP)</a></li>
+                    <li><a href="#">Punamchand Baranda (BJP)</a></li>
+                    <li><a href="#">Raju Parghi (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Modasa <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Rajendrasinh Parmar	 (AAP)</a></li>
+                    <li><a href="#">Bhikhubhai Parmar (BJP)</a></li>
+                    <li><a href="#">Rajendrasinh Thakor (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Bayad <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Chunnibhai Patel (AAP)</a></li>
+                    <li><a href="#">Bhikhiben Parmar (BJP)</a></li>
+                    <li><a href="#">Mahendrasinh Shankersinh Vaghela (INC)</a></li>
+                  </ul>
+                </li>
+              </ul> 
+                    <a class="test" tabindex="-1" href="#">Sabarkantha	<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Prantij<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Alpesh Patel (AAP)</a></li>
+                    <li><a href="#">Gajendrasinh Parmar (BJP)</a></li>
+                    <li><a href="#">Bahecharsinh Harisinh Rathod (INC)</a></li>
+                  </ul>
+              </li>
+          </ul>
+               <a class="test" tabindex="-1" href="#">Gandhinagar<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Dahegam<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Suhag Panchal (AAP)</a></li>
+                    <li><a href="#">Balrajsinh Chauhan (BJP)</a></li>
+                    <li><a href="#">Vakhatsinh Amarsinh Chauhan (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Gandhinagar South<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Dolat Patel (AAP)</a></li>
+                    <li><a href="#">Alpesh Thakor (BJP)</a></li>
+                    <li><a href="#">Himanshu Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Gandhinagar North <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Mukesh Patel (AAP)</a></li>
+                    <li><a href="#">Ritaben Patel	 (BJP)</a></li>
+                    <li><a href="#">Virendrasinh Mafatsinh Vaghela (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Mansa<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bhaskar Patel (AAP)</a></li>
+                    <li><a href="#">Jayanti Patel (BJP)</a></li>
+                    <li><a href="#">Thakor Babusinh Mohansinh (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Kalol (Gandhinagar)	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Kantiji Thakor (AAP)</a></li>
+                    <li><a href="#">Bakaji Thakor (BJP)</a></li>
+                    <li><a href="#">Baldevji Thakor (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                   <a class="test" tabindex="-1" href="#">Ahmedabad<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Viramgam<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Kuvarji Thakor (AAP)</a></li>
+                    <li><a href="#">Hardik Patel (BJP)</a></li>
+                    <li><a href="#">Lakhabhai Bharwad (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Sanand<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Kuldip Vaghela (AAP)</a></li>
+                    <li><a href="#">Kanubhai Patel (BJP)</a></li>
+                    <li><a href="#">Ramesh Koli (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Ghatlodia <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vijay Patel (AAP)</a></li>
+                    <li><a href="#">Bhupendrabhai Patel	 (BJP)</a></li>
+                    <li><a href="#">Amee Yajnik (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Vejalpur<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Kalpesh Patel (AAP)</a></li>
+                    <li><a href="#">Amitbhai Thakar (BJP)</a></li>
+                    <li><a href="#">Rajendra Natwarlal Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Vatva	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bipin Patel (AAP)</a></li>
+                    <li><a href="#">Babusingh Jadhav (BJP)</a></li>
+                    <li><a href="#">Balvantbhai Gadhavi (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Ellisbridge	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Paras Shah (AAP)</a></li>
+                    <li><a href="#">Amit Shah (BJP)</a></li>
+                    <li><a href="#">Bhikhu Dave (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Naranpura	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Pankaj Patel (AAP)</a></li>
+                    <li><a href="#">Jitendra Patel (BJP)</a></li>
+                    <li><a href="#">Sonal Ben Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Thakkarbapa Nagar	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sanjay Mori (AAP)</a></li>
+                    <li><a href="#">Kanchanben Radadiya (BJP)</a></li>
+                    <li><a href="#">Vijaykumar C Brahmabhatt (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Bapunagar	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Rajeshbhai Dixit (AAP)</a></li>
+                    <li><a href="#">Dineshsinh Kushwah	 (BJP)</a></li>
+                    <li><a href="#">Himmatsinh Patel (INC)</a></li>
+                  </ul>
+                   <a class="test" href="#">Dholka	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jattuba Gol (AAP)</a></li>
+                    <li><a href="#">Kiritsinh Dabhi	 (BJP)</a></li>
+                    <li><a href="#">Ashwin Rathod (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                   <a class="test" tabindex="-1" href="#">Surendranagar<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Dasada (SC)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Arvind Solanki (AAP)</a></li>
+                    <li><a href="#">Parshattom Parmar (BJP)</a></li>
+                    <li><a href="#">Naushad Solanki (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Limbdi<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Mayur Sakariya (AAP)</a></li>
+                    <li><a href="#">Kiritsinh Rana (BJP)</a></li>
+                    <li><a href="#">Kalpana Makwana (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Wadhwan <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Hitesh Patel Bajrang (AAP)</a></li>
+                    <li><a href="#">Jagdish Makwana	 (BJP)</a></li>
+                    <li><a href="#">Tarun Gadhvi (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Chotila<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Raju Karpada (AAP)</a></li>
+                    <li><a href="#">Shamji Chauhan (BJP)</a></li>
+                    <li><a href="#">Rutvik Makwana (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Dhangadhra	<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vagjibhai Patel (AAP)</a></li>
+                    <li><a href="#">Prakash Varmora (BJP)</a></li>
+                    <li><a href="#">Chhattarsinh Gunjariya (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                    <a class="test" tabindex="-1" href="#">Morbi<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Morbi<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Pankaj Ransariya (AAP)</a></li>
+                    <li><a href="#">Kantilal Amrutiya (BJP)</a></li>
+                    <li><a href="#">Jayanti Jerajbhai Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Tankara<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sanjay Bhatasna (AAP)</a></li>
+                    <li><a href="#">Durlabhji Dethariya (BJP)</a></li>
+                    <li><a href="#">Lalit Kagathara (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Wankaner <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vikram Sorani (AAP)</a></li>
+                    <li><a href="#">Jitu Somani	 (BJP)</a></li>
+                    <li><a href="#">Mohammed Javed Pirzada (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                   <a class="test" tabindex="-1" href="#">Rajkot<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Rajkot East<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Rahul Bhuva (AAP)</a></li>
+                    <li><a href="#">Uday Kangat (BJP)</a></li>
+                    <li><a href="#">Indranil Rajguru (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Rajkot West<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Dinesh Joshi (AAP)</a></li>
+                    <li><a href="#">Darshita Shah (BJP)</a></li>
+                    <li><a href="#">Mansukhbhai Kalariya (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Rajkot South <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Shivlal Barasia (AAP)</a></li>
+                    <li><a href="#">Ramesh Tilara	 (BJP)</a></li>
+                    <li><a href="#">Hiteshbhai M. Vora (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Rajkot Rural (SC) <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vashram Sagathiya (AAP)</a></li>
+                    <li><a href="#">Bhanuben Babariya		 (BJP)</a></li>
+                    <li><a href="#">Sureshbhai Karshanbhai Bathvar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Jasdan <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Tejas Gajipara (AAP)</a></li>
+                    <li><a href="#">Kunwarjibhai M. Bavaliya (BJP)</a></li>
+                    <li><a href="#">Bholabhai Bhikabhai Gohil (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Gondal<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Nimisha Khunt (AAP)</a></li>
+                    <li><a href="#">Gitaba J. Jadeja (BJP)</a></li>
+                    <li><a href="#">Yatish Desai (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Dhoraji<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vipul Sakhiya (AAP)</a></li>
+                    <li><a href="#">Mahendra Padaliya (BJP)</a></li>
+                    <li><a href="#">Lalit Vasoya (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                    <a class="test" tabindex="-1" href="#">Jamnagar<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Kalavad (SC)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jignesh Solanki (AAP)</a></li>
+                    <li><a href="#">Meghjibhai Chavda (BJP)</a></li>
+                    <li><a href="#">Pravin Muchhadiya (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Jamnagar Rural<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Prakash Donga (AAP)</a></li>
+                    <li><a href="#">Raghavji Patel (BJP)</a></li>
+                    <li><a href="#">Jivan Kumbharvadiya (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Jamnagar North <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Karsanbhai Karmur (AAP)</a></li>
+                    <li><a href="#">Rivaba Jadeja	 (BJP)</a></li>
+                    <li><a href="#">Bipendrasinh Jadeja (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Jamnagar South <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vishal Tyagi (AAP)</a></li>
+                    <li><a href="#">Divyesh Akbar (BJP)</a></li>
+                    <li><a href="#">Manoj Kathiria (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Jamjodhpur <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Hemant Khava (AAP)</a></li>
+                    <li><a href="#">Chiman Sapariya (BJP)</a></li>
+                    <li><a href="#">Chirag Kalariya (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                  <a class="test" tabindex="-1" href="#">Devbhoomi
+      Dwarka<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Khambhalia<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Isudan Gadhvi (AAP)</a></li>
+                    <li><a href="#">Mulubhai Bera (BJP)</a></li>
+                    <li><a href="#">Vikram Madam (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Dwarka <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Nakum Lakhmanbhai Boghabhai (AAP)</a></li>
+                    <li><a href="#">Pabubha Manek (BJP)</a></li>
+                    <li><a href="#">Malubhai Kandoria (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                  <a class="test" tabindex="-1" href="#">Porbandar<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Porbandar<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jeevan Jungi (AAP)</a></li>
+                    <li><a href="#">Babu Bokhiria (BJP)</a></li>
+                    <li><a href="#">Arjun Modhwadia (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Kutiyana<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bhimabhai Makwana (AAP)</a></li>
+                    <li><a href="#">Dheliben Odedara (BJP)</a></li>
+                    <li><a href="#">Nathabhai Odedara (INC)</a></li>
+                  </ul>
+                </li>
+              </ul> 
+                  <a class="test" tabindex="-1" href="#">Junagadh<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Manavadar<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Karsanbapu Bhadrak (AAP)</a></li>
+                    <li><a href="#">Jawaharbhai Chavda (BJP)</a></li>
+                    <li><a href="#">Arvind Ladani (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Junagadh<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Chetan Gajera (AAP)</a></li>
+                    <li><a href="#">Sanjay Koradiya (BJP)</a></li>
+                    <li><a href="#">Karsanbhai Vaddoriay (INC)</a></li>
+                  </ul>
+                   <a class="test" href="#">Visavadar<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bhupat Bhayani (AAP)</a></li>
+                    <li><a href="#">Harshad Ribadiya	 (BJP)</a></li>
+                    <li><a href="#">Karsanbhai Narainbhai Vaddoriay (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Keshod<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ramjibhai Chudasma (AAP)</a></li>
+                    <li><a href="#">Devabhai Malam (BJP)</a></li>
+                    <li><a href="#">Hirabhai Jotava (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Mangrol (Junagadh)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Piyush Parmar (AAP)</a></li>
+                    <li><a href="#">Bhagvan Karagatiya (BJP)</a></li>
+                    <li><a href="#">Babu Vaja (INC)</a></li>
+                  </ul>
+                </li>
+              </ul> 
+                  <a class="test" tabindex="-1" href="#">Gir Somnath<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Somnath<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jagmal Vala (AAP)</a></li>
+                    <li><a href="#">Mansinh Parmar (BJP)</a></li>
+                    <li><a href="#">Vimal Chudasma (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Talala<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Devender Solanki (AAP)</a></li>
+                    <li><a href="#">Bhagwanbhai Barad (BJP)</a></li>
+                    <li><a href="#">Mansinh Dodiya (INC)</a></li>
+                  </ul>
+                   <a class="test" href="#">Kodinar (SC)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Valijibhai Makwana (AAP)</a></li>
+                    <li><a href="#">Pradyuman Vaja (BJP)</a></li>
+                    <li><a href="#">Mahesh Makwana (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Una<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sejalben Khunt (AAP)</a></li>
+                    <li><a href="#">Kalubhai Rathod (BJP)</a></li>
+                    <li><a href="#">Punja Vansh (INC)</a></li>
+                  </ul>
+                </li>
+              </ul> 
+                  <a class="test" tabindex="-1" href="#">Amreli<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Dhari<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Kantibhai Satasiya (AAP)</a></li>
+                    <li><a href="#">Jaysukh Kakdiya (BJP)</a></li>
+                    <li><a href="#">Kirti Borisagar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Amreli<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ravi Dhanani (AAP)</a></li>
+                    <li><a href="#">Kaushik Vekariya (BJP)</a></li>
+                    <li><a href="#">Paresh Dhanani (INC)</a></li>
+                  </ul>
+                   <a class="test" href="#">Lathi <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Jaysukh Detroja (AAP)</a></li>
+                    <li><a href="#">Janak Talaviy (BJP)</a></li>
+                    <li><a href="#">Virjibhai Thummar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Rajula<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Bharat Baldaniya (AAP)</a></li>
+                    <li><a href="#">Hira Solanki (BJP)</a></li>
+                    <li><a href="#">Ambrish Der (INC)</a></li>
+                  </ul>
+                </li>
+              </ul> 
+                   <a class="test" tabindex="-1" href="#">Bhavnagar<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Mahuva (Bhavnagar)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ashok Joliya (AAP)</a></li>
+                    <li><a href="#">Shivabhai Gohil (BJP)</a></li>
+                    <li><a href="#">Kanu Kalsaria (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Talaja<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Laluben Narsibhai Chauhan (AAP)</a></li>
+                    <li><a href="#">Gautam Chauhan (BJP)</a></li>
+                    <li><a href="#">Kanu Baraiya (INC)</a></li>
+                  </ul>
+                   <a class="test" href="#">Gariadhar<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sudhir Vaghani (AAP)</a></li>
+                    <li><a href="#">Keshubhai Nakrani (BJP)</a></li>
+                    <li><a href="#">Divyesh Chavda (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Bhavnagar Rural<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Khumansinh Gohil (AAP)</a></li>
+                    <li><a href="#">Parshottam Solanki (BJP)</a></li>
+                    <li><a href="#">Revatsinh Gohil (INC)</a></li>
+                  </ul>
+                    <a class="test" href="#">Bhavnagar East<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Hamir Rathod (AAP)</a></li>
+                    <li><a href="#">Sejal Pandya (BJP)</a></li>
+                    <li><a href="#">Baldev Majibhai Solanki (INC)</a></li>
+                  </ul>
+                    <a class="test" href="#">Bhavnagar West<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Raju Solanki (AAP)</a></li>
+                    <li><a href="#">Jitendra Vaghani (BJP)</a></li>
+                    <li><a href="#">Kishorsinh Gohil (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                  <a class="test" tabindex="-1" href="#">Botad<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Gadhada (SC)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ramesh Parmar (AAP)</a></li>
+                    <li><a href="#">Shambhuprasad Tundiya (BJP)</a></li>
+                    <li><a href="#">Jagdish Chavda (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Botad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Umesh Makwana (AAP)</a></li>
+                    <li><a href="#">Ghanshyam Virani (BJP)</a></li>
+                    <li><a href="#">Manhar Patel (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                <a class="test" tabindex="-1" href="#">Anand<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Khambhat<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Arun Gohil (AAP)</a></li>
+                    <li><a href="#">Mahesh Raval (BJP)</a></li>
+                    <li><a href="#">Chirag Arvindbhai Patel (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Borsad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Manish Patel (AAP)</a></li>
+                    <li><a href="#">Raman Solanki (BJP)</a></li>
+                    <li><a href="#">Rajendrasinh Parmar (INC)</a></li>
+                  </ul>
+                    <a class="test" href="#">Anklav<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Gajendra Singh (AAP)</a></li>
+                    <li><a href="#">Gulabsinh Padiyar (BJP)</a></li>
+                    <li><a href="#">Amit Chavda (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Borsad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Manish Patel (AAP)</a></li>
+                    <li><a href="#">Raman Solanki (BJP)</a></li>
+                    <li><a href="#">Rajendrasinh Parmar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Umreth<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Amrishbhai Patel (AAP)</a></li>
+                    <li><a href="#">Govind Parmar (BJP)</a></li>
+                    <li><a href="#">Jayantbhai Patel Boskey (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Petlad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Arjun Bharwad (AAP)</a></li>
+                    <li><a href="#">Kamlesh Patel (BJP)</a></li>
+                    <li><a href="#">Dr Prakash Parmar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Sojitra<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Manubhai Thakur (AAP)</a></li>
+                    <li><a href="#">Vipul Patel (BJP)</a></li>
+                    <li><a href="#">Punambhai M parmar (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                 <a class="test" tabindex="-1" href="#">Kheda<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Matar<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Lalji Parmar (AAP)</a></li>
+                    <li><a href="#">Kalpesh Parmar (BJP)</a></li>
+                    <li><a href="#">Sanjaybhai Patel (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Nadiad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Harshad Vaghela (AAP)</a></li>
+                    <li><a href="#">Pankaj Desai (BJP)</a></li>
+                    <li><a href="#">Dhruval Patel (INC)</a></li>
+                  </ul>
+                    <a class="test" href="#">Mehmedabad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Pramodbhai Chauhan (AAP)</a></li>
+                    <li><a href="#">Arjunsinh Chauhan (BJP)</a></li>
+                    <li><a href="#">Juvansinh Gadabhai (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Mahudha<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ravjibhai Somabhai Vaghela (AAP)</a></li>
+                    <li><a href="#">Sanjaysinh Mahida	 (BJP)</a></li>
+                    <li><a href="#">Indrajitsinh Natvarsinh Parmar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Thasra<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Natwarsinh Rathod (AAP)</a></li>
+                    <li><a href="#">Yogendrasinh Parmar (BJP)</a></li>
+                    <li><a href="#">Kantibhai Parmar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Kapadvanj<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Manubhai Patel (AAP)</a></li>
+                    <li><a href="#">Rajeshkumar Zala (BJP)</a></li>
+                    <li><a href="#">Kalabhai Raijibhai Dabhi (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Balasinor<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Udeysinh Chauhan (AAP)</a></li>
+                    <li><a href="#">Mansinh Chauhan (BJP)</a></li>
+                    <li><a href="#">Ajitsinh Parvatsinh Chauhan (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                  <a class="test" tabindex="-1" href="#">Mahisagar<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Lunawada<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Natwarsinh Solanki (AAP)</a></li>
+                    <li><a href="#">Jignesh Sevak (BJP)</a></li>
+                    <li><a href="#">Gulab Singh (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Santrampur (ST)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Parvat Vagodia Fauji (AAP)</a></li>
+                    <li><a href="#">Kuber Dindor (BJP)</a></li>
+                    <li><a href="#">Gendalbhai Motibhai Damor (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                  <a class="test" tabindex="-1" href="#">Vadodara<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Dabhoi<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ajit Thakor (AAP)</a></li>
+                    <li><a href="#">Shailesh Mehta (BJP)</a></li>
+                    <li><a href="#">Bal kishan Patel (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Sayajigunj<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Swejal Vyas (AAP)</a></li>
+                    <li><a href="#">Keyur Rokadiya (BJP)</a></li>
+                    <li><a href="#">Amee Ravat (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Akota<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Shashank Khare (AAP)</a></li>
+                    <li><a href="#">Chaitanya Desai (BJP)</a></li>
+                    <li><a href="#">Rutvik Joshi (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Manjalpur<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Vinay Chavan (AAP)</a></li>
+                    <li><a href="#">Yogesh Patel (BJP)</a></li>
+                    <li><a href="#">Tashvin Singh (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Padra<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sandeep Singh Raj (AAP)</a></li>
+                    <li><a href="#">Chaitanyasinh Zala (BJP)</a></li>
+                    <li><a href="#">Jashpalsinh Padhiyar (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Karjan<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Paresh Patel (AAP)</a></li>
+                    <li><a href="#">Akshay Patel (BJP)</a></li>
+                    <li><a href="#">Pritesh Patel (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+                   <a class="test" tabindex="-1" href="#">Surat<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="test" href="#">Olpad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Dharmik Malaviya (AAP)</a></li>
+                    <li><a href="#">Mukesh Patel (BJP)</a></li>
+                    <li><a href="#">Darshankumar Nayak (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Mangrol (Surat) (ST)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Snehal Vasava (AAP)</a></li>
+                    <li><a href="#">Ganpat Vasava (BJP)</a></li>
+                    <li><a href="#">Anilbhai Sumanbhai Chaudhari (INC)</a></li>
+                  </ul>
+                     <a class="test" href="#">Mandvi (Surat) (ST)<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Saynaben Gamit (AAP)</a></li>
+                    <li><a href="#">Kunvarji Halpati (BJP)</a></li>
+                    <li><a href="#">Anandbhai Chaudhari (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Kamrej<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Ram Dhaduk (AAP)</a></li>
+                    <li><a href="#">Praful Panseria (BJP)</a></li>
+                    <li><a href="#">Nileshkumar Kumbhani (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Surat North<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Mahendra Navadiya (AAP)</a></li>
+                    <li><a href="#">Kantibhai Ballar (BJP)</a></li>
+                    <li><a href="#">Ashokbhai V Patel (INC)</a></li>
+                  </ul>
+                  <a class="test" href="#">Varachha Road<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Alpesh Kathiriya (AAP)</a></li>
+                    <li><a href="#">Kishor Kanani (BJP)</a></li>
+                    <li><a href="#">Praful Togadiya (INC)</a></li>
+                  </ul>
+                   <a class="test" href="#">Majura<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">P. V. S. Sarma (AAP)</a></li>
+                    <li><a href="#">Harsh Sanghavi  (BJP)</a></li>
+                    <li><a href="#">Balwant Shantilal Jain  (INC)</a></li>
+                  </ul>
+                </li>
+              </ul>
+        </div>
+      </div>
+      </div>
+      
+      <script>
+      $(document).ready(function(){
+        $('.dropdown-submenu a.test').on("click", function(e){
+          $(this).next('ul').toggle();
+          e.stopPropagation();
+          e.preventDefault();
+        });
+      });
+      </script>
+     
+      
+
+
+   </body>
+   </html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  </head>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e6e8ed;
+  color: #666666;
+  font-family: "Montserrat", sans-serif;
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
+  line-height: 1px;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    "sidebar header  "
+    "sidebar main ";
+  height: 100vh;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.header {
+  grid-area: header;
+  height: 70px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-icon {
+  display: none;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+#sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  background-color: #21232d;
+  color: #9799ab;
+  overflow-y: auto;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 30px;
+}
+
+.sidebar-title > span {
+  display: none;
+}
+
+.sidebar-brand {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-list {
+  padding: 0;
+  margin-top: 15px;
+  list-style-type: none;
+}
+
+.sidebar-list-item {
+  padding: 20px 20px 20px 20px;
+}
+
+.sidebar-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.sidebar-responsive {
+  display: inline !important;
+  position: absolute;
+ 
+  z-index: 12 !important;
+}
+
+.content{
+  margin: auto;
+  color: rgb(15, 11, 11);
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  /* border: 5px solid; */
+  width: 1050px;
+  
+}
+.content1{
+  color: rgb(15, 11, 11);
+  text-align: left;
+}
+
+content2{
+  color: rgb(0, 54, 153);
+  text-align: center;
+}
+
+/* Medium <= 992px */
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+
+  .sidebar-title > span {
+    display: inline;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .header-left {
+    display: none;
+  }
+}
+  </style>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        
+        <div class="header-left">
+         
+          
+          <p><strong>2022 Gujarat Legislative Assembly Election</strong></p>
+        </div>
+      </header>
+
+      <div class="content " style="background-image: url('./bjp.png');">
+        <p class="content2">
+          <strong>CONDUCTING AUTHORITY: State Election Commission, Gujarat</strong>
+        </p>
+        <!-- <strong><h1>2022 Gujarat Legislative Assembly election</h1></strong> -->
+        <p>
+         The tenure of 14th Gujarat Legislative Assembly is scheduled to end on 18 February 2023.
+         This year the election is being conducted in 2 phases. 
+        </p>
+        <ul style="list-style-type: circle" class="content1">
+         <li>Polling date of First phase - December 1</li>
+         <li>Polling date of Second phase - December 5</li>
+         <li>Date of Result - December 8 </li>
+        </ul>
+        <br>
+        <p class="content1">
+          As per the updates from the EC, the total number of electors is 4,91,17,308. Out of these, 4,90,89,765 are general voters while 27,943 are service voters.  The EC said this time it will set up 51,782 polling booths, 3.29 per cent more than what was in the last election held in 2022.
+        </p>
+        <p class="content1">
+          In total, Gujarat has 182 assembly seats out of these 13 are reserved for SCs and 27 for STs. The highest number of seats is Central Gujarat (61), followed by Saurashtra-Kutch (54), South Gujarat (35) and North Gujarat (32).
+        </p>
+        <p class="content1">
+          The main battle in this election is expected to be between the ruling BJP and the Congress. However, the Aam Aadmi Party’s (AAP) aggressive campaign is likely to make it a trilateral contest. Apart from these three parties, five more parties are in the fray such as Nationalist Congress Party (NCP), Communist Party of India (CPI), Bharatiya Tribal Party (BTP), All India Majlis-e-Ittehadul Muslimeen (AIMIM), All India Trinamool Congress (AITC).
+        </p>
+        <strong>State Election Commissioner:
+        State Government has appointed Shri Sanjay Prasad, IAS (Retd) as State Election Commissioner w.e.f 03/09/2019.</strong>
+      
+      
+          
+        
+         
+
+
+
+      </div>
+      
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Menu
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">dashboard</span><a href="/index"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Dashboard</a> 
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">inventory_2</span> <a href="/parties"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Candidates</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">fact_check</span> <a href="/info"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Information</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">fact_check</span><a href="/model"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Model</a>
+          </li>
+          <li class="sidebar-list-item">
+            <span class="material-icons-outlined">insert_chart</span> <a href="/analysis"  class="text-decoration-none" style ="text-decoration: none; color: #e6e8ed;"  >Analysis</a>
+          </li>
+          
+        </ul>
+      </aside>
+
+     
+    </div>
+
+   </body>
+   </html>
